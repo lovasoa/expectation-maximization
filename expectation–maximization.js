@@ -19,6 +19,8 @@ function prob_fun(params, x) {
 function update_groups(groups, tiks) {
   const n = points.length;
   return groups.map(function (group, k) {
+    // We use Number.EPSILON instead of zero to avoid converging to a null solution
+    // If a group is currently far-off, we don't want it's weight to become 0, or its sigma to become infinite
     const tiksum = tiks.reduce((p,tik) => p + tik[k], Number.EPSILON);
     return tiks.reduce(function (newgroup, tik, i) {
       const tickval = tik[k], curpoint = points[i];
