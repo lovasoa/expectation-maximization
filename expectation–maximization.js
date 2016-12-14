@@ -1,3 +1,6 @@
+// Expectation–maximization (EM) algorithm, implemented in Javascript (ES6) for floating-point variables
+// Ophir LOJKINE, december 2016
+// Published under WTFPL
 //  == User parameters ==
 
 // Random initialization parameters for our 2 data groups
