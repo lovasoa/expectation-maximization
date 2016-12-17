@@ -69,7 +69,6 @@ function tiks(groups) {
 // Itereate, alterning estimation and maximization
 var ts = n.random([n_groups, points.length]);
 for (var i=0; i<50; i++) {
-  console.log(ts);
   var groups = compute_groups(ts);
   var oldts = ts, ts = tiks(groups);
 
