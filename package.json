@@ -1,6 +1,6 @@
 {
   "name": "expectation-maximization",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Fit multivariate data with gaussian mixture by EM algorithm",
   "main": "expectation-maximization.js",
   "dependencies": {
@@ -18,13 +18,12 @@
   "keywords": [
     "mixture",
     "gaussian",
+    "model",
     "maximization",
     "expectation",
     "multivariate",
-    "ndarray",
-    "matrix",
-    "vector",
-    "n-dimensional"
+    "statistics",
+    "machine learning"
   ],
   "author": "Ophir LOJKINE",
   "license": "ISC"
