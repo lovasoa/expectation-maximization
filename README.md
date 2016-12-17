@@ -4,7 +4,7 @@
 
  Expectation–maximization (EM) algorithm for n-dimensional vectors, implemented in javascript.
 
- ## How to use
+## How to use
 
  ```js
 var expectation_maximization = require('expectation-maximization');
