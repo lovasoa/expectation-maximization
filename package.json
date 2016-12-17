@@ -1,0 +1,31 @@
+{
+  "name": "emjs",
+  "version": "0.0.2",
+  "description": "Fit multivariate data with gaussian mixture by EM algorithm",
+  "main": "expectation–maximization.js",
+  "dependencies": {
+    "multivariate-gaussian": "^2.0.0",
+    "numeric": "^1.2.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node test/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gist.github.com:ed48426ea1189ab75623afe84872cf73.git"
+  },
+  "keywords": [
+    "mixture",
+    "gaussian",
+    "maximization",
+    "expectation",
+    "multivariate",
+    "ndarray",
+    "matrix",
+    "vector",
+    "n-dimensional"
+  ],
+  "author": "Ophir LOJKINE",
+  "license": "ISC"
+}

@@ -9,7 +9,7 @@ var gaussian = require('multivariate-gaussian');
 function multivariate_gaussian_fit(points, n_groups, epsilon) {
 
 n_groups = n_groups || 1;
-epsilon = epsilon || 1e-5;
+epsilon = epsilon || n.epsilon;
 
 var dim = points[0].length; // dimension of the vector-space of the input data
 
@@ -68,7 +68,7 @@ function tiks(groups) {
 
 // Itereate, alterning estimation and maximization
 var ts = n.random([n_groups, points.length]);
-for (var i=0; i<50; i++) {
+for (var i=0; i<1000; i++) {
   var groups = compute_groups(ts);
   var oldts = ts, ts = tiks(groups);
 
