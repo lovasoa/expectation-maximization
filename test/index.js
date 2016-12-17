@@ -1,11 +1,13 @@
+'use strict';
+
 var multivariate_gaussian_fit = require('../');
 var n = require('numeric');
 var assert = require('assert');
 
 function assertNear(a, b, epsilon) {
   epsilon = epsilon || .1;
-  assert(n.norm2(n.sub(a, b)) < epsilon,
-    JSON.stringify(a) + ' near ' + JSON.stringify(b));
+  var msg = JSON.stringify(a) + ' near ' + JSON.stringify(b);
+  assert(n.norm2(n.sub(a, b)) < epsilon, msg);
 }
 
 // Our data points
@@ -23,13 +25,17 @@ for (var i = 0; i < 10000; i++) {
   var mu = groups[group].mu;
   var r = n.clone(mu);
   var N = 10;
-  for (var k = 0; k < N; k++) n.addeq(r, n.sub(n.random([2]), [.5, .5]));
+  for (var k = 0; k < N; k++) {
+    n.addeq(r, n.sub(n.random([2]), [.5, .5]));
+  }
   points.push(r);
 }
 
 var result = multivariate_gaussian_fit(points, 2);
-result.sort((a, b) => a.weight - b.weight);
-console.log(result)
+result.sort(function (a, b) {
+  return a.weight - b.weight;
+});
+console.log(result);
 
 assertNear(result[0].weight, groups[0].weight);
 assertNear(result[0].mu, groups[0].mu);
