@@ -1,6 +1,6 @@
 {
   "name": "expectation-maximization",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "description": "Fit multivariate data with gaussian mixture by EM algorithm",
   "main": "expectation-maximization.js",
   "dependencies": {
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@gist.github.com:ed48426ea1189ab75623afe84872cf73.git"
+    "url": "https://github.com/lovasoa/expectation-maximization.git"
   },
   "keywords": [
     "mixture",
