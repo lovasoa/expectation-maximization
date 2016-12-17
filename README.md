@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/lovasoa/expectation-maximization.svg?branch=master)](https://travis-ci.org/lovasoa/expectation-maximization)
 
 Expectation–maximization (EM) algorithm for n-dimensional vectors, implemented in javascript.
-This allows to fit a points with a multivariate gaussian mixture model.
+This allows to fit points with a multivariate gaussian mixture model.
 
 This can be used for statistical classification of multivariate data, anomaly
 detection, or predictive analytics.
