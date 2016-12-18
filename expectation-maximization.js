@@ -7,6 +7,13 @@
 var n = require("numeric");
 var gaussian = require('multivariate-gaussian');
 
+/**
+ * Fit multivariate data with a gaussian mixture model using the EM algorithm.
+ * @param {Array<Array<numer>>} points An non-empty array of points. N-dimensional point is represented by an array with N elements.
+ * @param {number} n_groups number of clusters
+ * @param {?number} epsilon A parameter indicating when to stop iterating. When the difference in probability varies by less than epsilon between two steps, then consider we have converged.
+ * @return {Array<{weight:number, mu:Array<number>, sigma:Array<Array<number>>}>} The groups
+ */
 function multivariate_gaussian_fit(points, n_groups, epsilon) {
   n_groups = n_groups || 1;
   epsilon = epsilon || n.epsilon;
