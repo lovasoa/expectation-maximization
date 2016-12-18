@@ -7,9 +7,12 @@
     "multivariate-gaussian": "^2.0.0",
     "numeric": "^1.2.6"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "jsdoc-to-markdown": "^2.0.1"
+  },
   "scripts": {
-    "test": "node test/index.js"
+    "test": "node test/index.js",
+    "prepublish": "jsdoc2md *js > docs/index.md"
   },
   "repository": {
     "type": "git",
