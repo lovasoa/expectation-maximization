@@ -5,7 +5,7 @@
 
 //  == User parameters ==
 var n = require("numeric");
-var gaussian = require('multivariate-gaussian');
+var Gaussian = require('multivariate-gaussian');
 
 /**
  * Represents group of points (a single gaussian in the gaussian mixture)
@@ -29,7 +29,21 @@ function Group(weight, mu, sigma) {
    * @member {Array<Array<number>>}
    **/
   this.sigma = sigma;
+
+  /**
+   * Gaussian object
+   * @private
+   */
+  this._gaussian = new Gaussian(this);
 }
+
+/**
+ * Evaluates the probability that a point belongs to the group
+ * @param {Array<number>} point
+ */
+Group.prototype.probability = function(point) {
+  return this.weight * this._gaussian.density(point);
+};
 
 /**
  * Fit multivariate data with a gaussian mixture model using the EM algorithm.
@@ -76,17 +90,17 @@ function multivariate_gaussian_fit(points, n_groups, epsilon) {
   // == Estimation phase ==
   function tiks(groups) {
     var res = [];
+    // Compute the raw density values
     for (var g = 0; g < n_groups; g++) {
       var line = [];
       var group = groups[g];
-      // Precompute the density functions
-      var density_fun = gaussian(group);
       for (var p = 0; p < points.length; p++) {
         var point = points[p];
-        line.push(group.weight * density_fun(point));
+        line.push(group.probability(point));
       }
       res.push(line);
     }
+    // Convert to probabilities by dividing by the sum
     for (var p = 0; p < points.length; p++) {
       var sum = 0;
       for (var g = 0; g < n_groups; g++) {

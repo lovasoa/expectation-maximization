@@ -23,6 +23,7 @@
     * [.weight](#Group+weight) : <code>number</code>
     * [.mu](#Group+mu) : <code>Array.&lt;number&gt;</code>
     * [.sigma](#Group+sigma) : <code>Array.&lt;Array.&lt;number&gt;&gt;</code>
+    * [.probability(point)](#Group+probability)
 
 <a name="new_Group_new"></a>
 
@@ -48,6 +49,17 @@ The mean vector of the gaussian
 The covariance matrix
 
 **Kind**: instance property of <code>[Group](#Group)</code>  
+<a name="Group+probability"></a>
+
+### group.probability(point)
+Evaluates the probability that a point belongs to the group
+
+**Kind**: instance method of <code>[Group](#Group)</code>  
+
+| Param | Type |
+| --- | --- |
+| point | <code>Array.&lt;number&gt;</code> | 
+
 <a name="multivariate_gaussian_fit"></a>
 
 ## multivariate_gaussian_fit(points, n_groups, epsilon) ⇒ <code>[Array.&lt;Group&gt;](#Group)</code>

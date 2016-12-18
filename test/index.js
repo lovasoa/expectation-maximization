@@ -35,7 +35,6 @@ var result = multivariate_gaussian_fit(points, 2);
 result.sort(function (a, b) {
   return a.weight - b.weight;
 });
-console.log(result);
 
 assertNear(result[0].weight, groups[0].weight);
 assertNear(result[0].mu, groups[0].mu);
