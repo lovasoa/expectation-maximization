@@ -8,11 +8,26 @@ var n = require("numeric");
 var gaussian = require('multivariate-gaussian');
 
 /**
+ * Represents group of points (a single gaussian in the gaussian mixture)
+ * @class
+ */
+function Group(weight, mu, sigma) {
+  /** @member {number} */
+  this.weight = weight;
+
+  /** @member {Array<number>} */
+  this.mu = mu;
+
+  /** @member {Array<Array<number>>} */
+  this.sigma = sigma;
+}
+
+/**
  * Fit multivariate data with a gaussian mixture model using the EM algorithm.
  * @param {Array<Array<numer>>} points An non-empty array of points. N-dimensional point is represented by an array with N elements.
  * @param {number} n_groups number of clusters
  * @param {?number} epsilon A parameter indicating when to stop iterating. When the difference in probability varies by less than epsilon between two steps, then consider we have converged.
- * @return {Array<{weight:number, mu:Array<number>, sigma:Array<Array<number>>}>} The groups
+ * @return {Array<Group>} The groups
  */
 function multivariate_gaussian_fit(points, n_groups, epsilon) {
   n_groups = n_groups || 1;
@@ -24,14 +39,18 @@ function multivariate_gaussian_fit(points, n_groups, epsilon) {
   // == Algorithm ==
   // Maximization phase
   function compute_groups(tiks) {
+    var len = tiks.length;
+    var res = new Array(len);
     var sum = n.sum(tiks);
-    return tiks.map(function (tik) {
+    for(var g=0; g<len; g++) {
+      var tik = tiks[g];
       var tiksum = n.sum(tik);
+      // Compute the weight
       var weight = tiksum / sum;
-      var mu = n.transpose(n.div(points, tiksum)).map(function (
-        xs) {
-        return n.sum(n.mul(xs, tik));
-      });
+      // Compute the mean
+      var mu = n.transpose(n.div(points, tiksum));
+      for(var m=0; m<mu.length; m++) mu[m] = n.sum(n.muleq(mu[m], tik));
+      // Compute the covariance
       var sigma = n.diag(n.rep([dim], n.epsilon));
       for (var i = 0; i < points.length; i++) {
         var point = points[i];
@@ -40,12 +59,9 @@ function multivariate_gaussian_fit(points, n_groups, epsilon) {
         var diffdiff = n.dot(n.transpose(diff), diff);
         n.addeq(sigma, n.mul(coeff, diffdiff));
       }
-      return {
-        weight: weight,
-        sigma: sigma,
-        mu: mu
-      };
-    });
+      res[g] = new Group(weight, mu, sigma);
+    }
+    return res;
   }
 
   // == Estimation phase ==
