@@ -40,6 +40,7 @@ function Group(weight, mu, sigma) {
 /**
  * Evaluates the probability that a point belongs to the group
  * @param {Array<number>} point
+ * @return {number} The probability
  */
 Group.prototype.probability = function(point) {
   return this.weight * this._gaussian.density(point);

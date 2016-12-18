@@ -23,7 +23,7 @@
     * [.weight](#Group+weight) : <code>number</code>
     * [.mu](#Group+mu) : <code>Array.&lt;number&gt;</code>
     * [.sigma](#Group+sigma) : <code>Array.&lt;Array.&lt;number&gt;&gt;</code>
-    * [.probability(point)](#Group+probability)
+    * [.probability(point)](#Group+probability) ⇒ <code>number</code>
 
 <a name="new_Group_new"></a>
 
@@ -51,10 +51,11 @@ The covariance matrix
 **Kind**: instance property of <code>[Group](#Group)</code>  
 <a name="Group+probability"></a>
 
-### group.probability(point)
+### group.probability(point) ⇒ <code>number</code>
 Evaluates the probability that a point belongs to the group
 
 **Kind**: instance method of <code>[Group](#Group)</code>  
+**Returns**: <code>number</code> - The probability  
 
 | Param | Type |
 | --- | --- |
