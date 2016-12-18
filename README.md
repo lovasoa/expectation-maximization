@@ -40,3 +40,8 @@ var groups = expectation_maximization(points, n_groups);
   ... // other groups
 ]
  ```
+
+## Documentation
+
+Auto-generated *jsdoc* documentation
+[is available here](https://github.com/lovasoa/expectation-maximization/tree/master/docs)
