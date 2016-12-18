@@ -1,6 +1,6 @@
 {
   "name": "expectation-maximization",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "Fit multivariate data with a gaussian mixture model using the EM algorithm.",
   "main": "expectation-maximization.js",
   "dependencies": {
