@@ -12,13 +12,22 @@ var gaussian = require('multivariate-gaussian');
  * @class
  */
 function Group(weight, mu, sigma) {
-  /** @member {number} */
+  /** The number of points in the group divided by the total number of points
+   * (*a-priori* probability of the group)
+   * @member {number}
+   **/
   this.weight = weight;
 
-  /** @member {Array<number>} */
+  /**
+   * The mean vector of the gaussian
+   * @member {Array<number>}
+   **/
   this.mu = mu;
 
-  /** @member {Array<Array<number>>} */
+  /**
+   * The covariance matrix
+   * @member {Array<Array<number>>}
+   **/
   this.sigma = sigma;
 }
 

@@ -32,14 +32,21 @@ Represents group of points (a single gaussian in the gaussian mixture)
 <a name="Group+weight"></a>
 
 ### group.weight : <code>number</code>
+The number of points in the group divided by the total number of points
+(*a-priori* probability of the group)
+
 **Kind**: instance property of <code>[Group](#Group)</code>  
 <a name="Group+mu"></a>
 
 ### group.mu : <code>Array.&lt;number&gt;</code>
+The mean vector of the gaussian
+
 **Kind**: instance property of <code>[Group](#Group)</code>  
 <a name="Group+sigma"></a>
 
 ### group.sigma : <code>Array.&lt;Array.&lt;number&gt;&gt;</code>
+The covariance matrix
+
 **Kind**: instance property of <code>[Group](#Group)</code>  
 <a name="multivariate_gaussian_fit"></a>
 
