@@ -90,28 +90,25 @@ function multivariate_gaussian_fit(points, n_groups, epsilon) {
 
   // == Estimation phase ==
   function tiks(groups) {
-    var res = [];
-    // Compute the raw density values
-    for (var g = 0; g < n_groups; g++) {
-      var line = [];
-      var group = groups[g];
-      for (var p = 0; p < points.length; p++) {
-        var point = points[p];
-        line.push(group.probability(point));
-      }
-      res.push(line);
-    }
-    // Convert to probabilities by dividing by the sum
+    var res = new Array(points.length);
+
     for (var p = 0; p < points.length; p++) {
+      var point = points[p];
+      var line = new Array(n_groups);
       var sum = 0;
+      // Compute the raw density values
       for (var g = 0; g < n_groups; g++) {
-        sum += res[g][p];
+        var group = groups[g];
+        var proba =  group.probability(point);
+        line[g] = proba;
+        sum += proba;
       }
-      for (var g = 0; g < n_groups; g++) {
-        res[g][p] /= sum;
-      }
+      // Convert to probabilities by dividing by the sum
+      for (var g = 0; g < n_groups; g++) line[g] /= sum;
+      res[p] = line;
     }
-    return res;
+
+    return n.transpose(res);
   }
 
   // == Main loop ==
