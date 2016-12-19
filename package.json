@@ -10,7 +10,7 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
-    "expectation-maximization": "^1.3.0",
+    "expectation-maximization": "^1.3.2",
     "vue": "^2.1.0"
   },
   "devDependencies": {
