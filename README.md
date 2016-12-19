@@ -45,3 +45,8 @@ var groups = expectation_maximization(points, n_groups);
 
 Auto-generated *jsdoc* documentation
 [is available here](https://github.com/lovasoa/expectation-maximization/tree/master/docs)
+
+## Demo
+
+A basic demo is availaible here:
+https://lovasoa.github.io/expectation-maximization/dist/
