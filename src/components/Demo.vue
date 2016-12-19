@@ -3,18 +3,18 @@
   <defs>
     <radialGradient id="gaussianGradient">
       <stop offset="0%" stop-color="white" stop-opacity=".75"/>
-      <stop offset="20%" stop-opacity=".5"/>
-      <stop offset="30%" stop-opacity=".34"/>
-      <stop offset="60%" stop-opacity=".14"/>
-      <stop offset="90%" stop-opacity=".02"/>
-      <stop offset="100%" stop-opacity="0"/>
+      <stop offset="20%" stop-color="white" stop-opacity=".5"/>
+      <stop offset="30%" stop-color="white" stop-opacity=".34"/>
+      <stop offset="60%" stop-color="white" stop-opacity=".14"/>
+      <stop offset="90%" stop-color="white" stop-opacity=".02"/>
+      <stop offset="100%" stop-color="white" stop-opacity="0"/>
     </radialGradient>
   </defs>
 
   <g v-for="g in groups"
        v-bind:transform="transform(g)">
       <circle fill="url(#gaussianGradient)" cx='0' cy='0' r='1' title='gaussian' />
-      <circle stroke="black" stroke-width=".001" fill="none" cx='0' cy='0' r='.1' title='0.1-sigma' />
+      <circle stroke="black" stroke-width=".0005" fill="none" cx='0' cy='0' r='.1' title='1%-sigma' />
     </g>
     <circle v-bind:cx="p[0]" v-bind:cy="p[1]" r="3" v-for="p in points"/>
     <text v-if="points.length === 0" x="100" y="50">Click to add points</text>
