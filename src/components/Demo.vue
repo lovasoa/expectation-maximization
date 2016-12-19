@@ -27,9 +27,14 @@ export default {
   },
   methods: {
     addpoint (evt) {
-      this.points.push([evt.clientX, evt.clientY])
-      var res = em(this.points, 2)
-      this.groups = res
+      const box = this.$el.getBoundingClientRect()
+      const x = evt.clientX - box.left
+      const y = evt.clientY - box.top
+      this.points.push([x, y])
+      setTimeout(() => {
+        var res = em(this.points, 2)
+        this.groups = res
+      }, 10)
     }
   }
 }
@@ -38,12 +43,13 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .canvas {
-  position: absolute;
-  top:0;
-  left:0;
-  width: 100%;
-  height: 100%;
+  margin:auto;
+  width: 1000px;
+  height: 750px;
   background-color: #7FDBFF;
   margin: auto;
+  border: 1px solid #2c3e50;
+  border-radius: 3px;
+  box-shadow: 1px 1px 2px #2c3e5099;
 }
 </style>
