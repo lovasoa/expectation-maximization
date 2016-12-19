@@ -40,3 +40,9 @@ assertNear(result[0].weight, groups[0].weight);
 assertNear(result[0].mu, groups[0].mu);
 assertNear(result[1].weight, groups[1].weight);
 assertNear(result[1].mu, groups[1].mu);
+
+// It should work with just two points
+var points = [[    241,    253  ],  [    1240,    214  ]];
+var result = multivariate_gaussian_fit(points, 2);
+assertNear(result[0].weight, .5);
+assertNear(result[1].weight, .5);
