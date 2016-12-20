@@ -53,5 +53,6 @@ export default {
   border: 1px solid #2c3e50;
   border-radius: 3px;
   box-shadow: 1px 1px 2px #2c3e5099;
+  user-select: none;
 }
 </style>
