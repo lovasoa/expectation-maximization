@@ -60,6 +60,8 @@ function multivariate_gaussian_fit(points, n_groups, epsilon) {
   // dimension of the vector-space of the input data
   var dim = points[0].length;
 
+  var transposed_points = n.transpose(points);
+
   // == Algorithm ==
   // Maximization phase
   function compute_groups(tiks) {
@@ -69,19 +71,29 @@ function multivariate_gaussian_fit(points, n_groups, epsilon) {
     for(var g=0; g<len; g++) {
       var tik = tiks[g];
       var tiksum = n.sum(tik);
+      if (tiksum < n.epsilon) {
+        tik = n.rep([tik.length], n.epsilon);
+        tiksum = tik.length * n.epsilon;
+      }
       // Compute the weight
       var weight = tiksum / sum;
       // Compute the mean
-      var mu = n.transpose(n.div(points, tiksum));
+      var mu = n.div(transposed_points, tiksum);
       for(var m=0; m<mu.length; m++) mu[m] = n.sum(n.muleq(mu[m], tik));
       // Compute the covariance
       var sigma = n.diag(n.rep([dim], n.epsilon));
       for (var i = 0; i < points.length; i++) {
         var point = points[i];
-        var diff = [n.sub(point, mu)];
+        var diff = n.sub(point, mu);
         var coeff = tik[i] / tiksum;
-        var diffdiff = n.dot(n.transpose(diff), diff);
-        n.addeq(sigma, n.mul(coeff, diffdiff));
+        var diffdiff = n.rep([dim, dim], 0);
+        for (var a=0; a<diff.length; a++) {
+          for (var b=0; b<=a; b++) {
+            var tmp = coeff * diff[a] * diff[b];
+            sigma[a][b] += tmp;
+            if (b !== a) sigma[b][a] += tmp;
+          }
+        }
       }
       res[g] = new Group(weight, mu, sigma);
     }
