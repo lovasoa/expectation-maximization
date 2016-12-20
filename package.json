@@ -8,7 +8,8 @@
     "numeric": "^1.2.6"
   },
   "devDependencies": {
-    "jsdoc-to-markdown": "^2.0.1"
+    "jsdoc-to-markdown": "^2.0.1",
+    "tape": "^4.6.3"
   },
   "scripts": {
     "test": "node test/index.js",
