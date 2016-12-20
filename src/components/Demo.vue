@@ -19,10 +19,10 @@ import GaussianGroup from './Group'
 export default {
   name: 'canvas',
   components: {GaussianGradiant, GaussianGroup},
+  props: ['ngroups'],
   data () {
     return {
-      points: [],
-      groups: []
+      points: []
     }
   },
   methods: {
@@ -31,10 +31,12 @@ export default {
       const x = evt.clientX - box.left
       const y = evt.clientY - box.top
       this.points.push([x, y])
-      setTimeout(() => {
-        var res = em(this.points, 2)
-        this.groups = res
-      }, 10)
+    }
+  },
+  computed: {
+    groups () {
+      if (this.points.length === 0 || this.ngroups < 1) return []
+      return em(this.points, this.ngroups)
     }
   }
 }
